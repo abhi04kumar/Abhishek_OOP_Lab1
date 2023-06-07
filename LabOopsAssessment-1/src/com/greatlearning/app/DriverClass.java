@@ -8,15 +8,29 @@ import java.util.regex.Pattern;
 
 public class DriverClass {
 	public static void main(String[] args) {
+		//Initializing scanner class for taking input
 		Scanner scan = new Scanner(System.in);
+		
+		//Taking input of First Name and Last Name of the candidate
 		System.out.println("Enter first name");
 		String firstname = scan.nextLine();
 		System.out.println("Enter last name");
 		String lastname = scan.nextLine();
+		
+		//Creating object for class Employee
 		Employee emp1 = new Employee();
+		
+		//Setting First Name and Last Name of the candidate in class Employee
 		emp1.setFirstname(firstname);
 		emp1.setLastname(lastname);
+		
+		// Initialization of variables
 		String department="";
+		String genpass="";
+		Pattern p; 
+		Matcher m;
+		
+		//Creating object for the class CredentialServiceImpl
 		CredentialServiceImpl cr = new CredentialServiceImpl();
 		
 		System.out.println("Please enter department from following\n");
@@ -26,11 +40,11 @@ public class DriverClass {
 		System.out.println("4. Legal");
 		int choice = scan.nextInt();
 		
+		//To check the input department name of the candidate and allot credentials accordingly.
 		switch(choice) {
 		case 1: department = "tech";
-			emp1.setEmail(cr.generateEmailAddress(firstname, lastname, department));
-			
-			break;
+		emp1.setEmail(cr.generateEmailAddress(firstname, lastname, department));
+		break;
 			
 		case 2: department = "admin";
 		emp1.setEmail(cr.generateEmailAddress(firstname, lastname, department));
@@ -46,17 +60,22 @@ public class DriverClass {
 		default: System.out.println("Kindly enter valid input");
 		}
 		
-		emp1.setPassword(cr.generatePassword());
-		cr.showCredentials(emp1);
 		
+		//To get the password as per requirement after loop check
+		do {
+		
+			genpass = cr.generatePassword();
 		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)" + "(?=.*[-+_!@#$%^&*., ?]).+$";
 		
-		Pattern p = Pattern.compile(regex);
-		 Matcher m = p.matcher(cr.generatePassword());
-		 if (m.matches())
-		            System.out.println("Valid Password");
-		        else
-		            System.out.println("inValid Password");
+		 p = Pattern.compile(regex);
+		 m = p.matcher(genpass);
+		}while (!m.matches());
+		          
+		//Setting the password obtained after check as per norms 
+		emp1.setPassword(genpass);
+		
+		//Display of credentials for the given candidate
+		 cr.showCredentials(emp1);
 			
 		
 		

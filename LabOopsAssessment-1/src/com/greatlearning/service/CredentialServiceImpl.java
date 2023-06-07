@@ -4,12 +4,15 @@ import com.greatlearning.model.Employee;
 import java.util.Random;
 
 public class CredentialServiceImpl implements CredentialService{
+	
 @Override
+//Method to generate email Id as per requirement
 public String generateEmailAddress(String firstname, String lastname, String department) {
 	return firstname.toLowerCase() + lastname.toLowerCase() + "@" + department + ".gl.com";
 }
 
 @Override
+//Method to generate passsword as per requirement
 public String generatePassword() {
 	Random rn = new Random();
     String password="";
@@ -21,6 +24,7 @@ public String generatePassword() {
 }
 
 @Override
+//Method to display Credentials of the candidate
 public void showCredentials(Employee e1) {
 	System.out.println("Dear " + e1.getFirstname() + " your generated credentials are as follows");
 	System.out.println("Email    ------>" + e1.getEmail());
