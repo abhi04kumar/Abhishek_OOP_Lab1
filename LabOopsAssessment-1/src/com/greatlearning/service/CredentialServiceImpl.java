@@ -31,4 +31,8 @@ public void showCredentials(Employee e1) {
 	System.out.println("Password ------>" + e1.getPassword());
 }
 
+public String generateEmailAddress(Employee emp1, String department) {
+	return emp1.getFirstname().toLowerCase() + emp1.getLastname().toLowerCase() + "@" + department + ".gl.com";
+}	
+
 }
