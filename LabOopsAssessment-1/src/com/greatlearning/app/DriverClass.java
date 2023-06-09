@@ -17,12 +17,15 @@ public class DriverClass {
 		System.out.println("Enter last name");
 		String lastname = scan.nextLine();
 		
-		//Creating object for class Employee
-		Employee emp1 = new Employee();
+		//Creating object for class Employee parameterized constructor
+		Employee emp1=new Employee(firstname,lastname);
+		
+		//Creating object for class Employee non parameterized constructor
+		Employee emp2 = new Employee();
 		
 		//Setting First Name and Last Name of the candidate in class Employee
-		emp1.setFirstname(firstname);
-		emp1.setLastname(lastname);
+		emp2.setFirstname(firstname);
+		emp2.setLastname(lastname);
 		
 		// Initialization of variables
 		String department="";
@@ -33,7 +36,7 @@ public class DriverClass {
 		//Creating object for the class CredentialServiceImpl
 		CredentialServiceImpl cr = new CredentialServiceImpl();
 		
-		System.out.println("Please enter department from following\n");
+		System.out.println("Please enter department from following");
 		System.out.println("1. Technical");
 		System.out.println("2. Admin");
 		System.out.println("3. Human Resource");
@@ -43,7 +46,8 @@ public class DriverClass {
 		//To check the input department name of the candidate and allot credentials accordingly.
 		switch(choice) {
 		case 1: department = "tech";
-		emp1.setEmail(cr.generateEmailAddress(firstname, lastname, department));
+		//emp1.setEmail(cr.generateEmailAddress(firstname, lastname, department));
+		emp1.setEmail(cr.generateEmailAddress(emp1, department));		
 		break;
 			
 		case 2: department = "admin";
