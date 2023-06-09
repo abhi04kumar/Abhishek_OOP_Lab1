@@ -11,6 +11,13 @@ public class Employee {
 	//Declaration of default constructor
 	public Employee() {	}
 	
+	//Declaration of parameterized constructor
+	public Employee(String firstname, String lastname) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+		
 	//Getter for First Name
 	public String getFirstname() {
 		return firstname;
